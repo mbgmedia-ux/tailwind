@@ -2,19 +2,51 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    instagram: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || "Failed to send email. Please try again.");
+      }
+
       setSubmitted(true);
-    }, 600);
+    } catch (err: any) {
+      console.error("Form Submission Error:", err);
+      setErrorMsg(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,6 +102,13 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {errorMsg && (
+                  <div className="p-4 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-center gap-3">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+
                 <div>
                   <label
                     htmlFor="name"
@@ -80,6 +119,9 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     placeholder="Your name"
                     className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
@@ -96,6 +138,9 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     placeholder="you@example.com"
                     className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
@@ -112,6 +157,9 @@ export default function Contact() {
                   <input
                     type="text"
                     id="instagram"
+                    name="instagram"
+                    value={formData.instagram}
+                    onChange={handleChange}
                     required
                     placeholder="@yourhandle"
                     className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
