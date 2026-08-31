@@ -102,7 +102,7 @@ export default function BlurText({
   return (
     <Component
       ref={ref as any}
-      className={className}
+      className={`${className} justify-center sm:justify-start`}
       style={{ display: "inline-flex", flexWrap: "wrap" }}
     >
       {elements.map((segment, index) => {
