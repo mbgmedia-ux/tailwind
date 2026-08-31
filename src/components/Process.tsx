@@ -138,7 +138,7 @@ export default function Process() {
                     className="flex flex-col justify-center w-full relative z-10 pr-24 md:pr-0"
                   >
                     <div className="mb-4">
-                      <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#455a64]">
+                      <span className="text-sm sm:text-base font-sans font-bold uppercase tracking-[0.25em] text-[#455a64]">
                         STEP {currentItem.step}
                       </span>
                     </div>

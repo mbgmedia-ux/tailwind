@@ -1,11 +1,58 @@
+"use client";
+
 import {
-  TrendingUp,
+  Target,
   Rocket,
-  GitMerge,
-  LineChart,
-  GraduationCap,
-  Package,
-} from "lucide-react";
+  CoinStack,
+  Dashboard,
+  Book,
+  Box,
+} from "@duo-icons/react";
+
+const capabilitiesData = [
+  {
+    eyebrow: "OFFER ARCHITECTURE",
+    title: "High-Converting Offer Architecture",
+    description:
+      "Structure irresistible, high-margin offers engineered specifically for your audience.",
+    icon: Target,
+  },
+  {
+    eyebrow: "LAUNCH EXECUTION",
+    title: "0-to-Launch Execution",
+    description:
+      "End-to-end launch strategy, copy, technical build, and coordination behind the scenes.",
+    icon: Rocket,
+  },
+  {
+    eyebrow: "CONVERSIONS",
+    title: "Automated Conversions",
+    description:
+      "Design and build automated funnels that convert attention into sales 24/7.",
+    icon: CoinStack,
+  },
+  {
+    eyebrow: "ENTERPRISE VALUE",
+    title: "Long-Term Enterprise Value",
+    description:
+      "Build sustainable recurring revenue models that increase the equity value of your brand.",
+    icon: Dashboard,
+  },
+  {
+    eyebrow: "MONETISATION",
+    title: "Knowledge Monetisation",
+    description:
+      "Package your unique expertise and authority into scalable digital courses and products.",
+    icon: Book,
+  },
+  {
+    eyebrow: "ECOSYSTEMS",
+    title: "Custom Digital Ecosystems",
+    description:
+      "Bespoke membership portals, digital assets, and automated infrastructure tailored to your business.",
+    icon: Box,
+  },
+];
 
 export default function Capabilities() {
   return (
@@ -24,128 +71,35 @@ export default function Capabilities() {
           </h2>
         </div>
 
-        {/* 2 ROWS x 3 COLUMNS BENTO GRID */}
+        {/* 2 ROWS x 3 COLUMNS BENTO GRID WITH DUOTONE ICONS IN #a85757 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* ROW 1 — CARD 1: Audience Monetisation */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  REVENUE
-                </span>
-              </div>
+          {capabilitiesData.map((item, idx) => {
+            const IconComponent = item.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans border-0 shadow-xs hover:shadow-md transition-all duration-200"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-[#f6eeee] text-[#a85757] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
+                      <IconComponent size={24} />
+                    </div>
+                    <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
+                      {item.eyebrow}
+                    </span>
+                  </div>
 
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Audience Monetisation
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                Turn attention into revenue with offers your audience already wants to buy.
-              </p>
-            </div>
-          </div>
-
-          {/* ROW 1 — CARD 2: Product Launches */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <Rocket className="w-6 h-6" />
+                  <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  LAUNCH
-                </span>
               </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Product Launches
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                End-to-end launch strategy, copy, and coordination without the spotlight.
-              </p>
-            </div>
-          </div>
-
-          {/* ROW 1 — CARD 3: Funnel Build-Out */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <GitMerge className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  FUNNELS
-                </span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Funnel Build-Out
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                Design and build the full funnel that converts followers into customers.
-              </p>
-            </div>
-          </div>
-
-          {/* ROW 2 — CARD 4: Growth Strategy */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <LineChart className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  SCALING
-                </span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Growth Strategy
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                A clear plan to scale your reach, revenue, and long-term business value.
-              </p>
-            </div>
-          </div>
-
-          {/* ROW 2 — CARD 5: Digital Courses */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  COURSES
-                </span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Digital Courses
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                Package your expertise into a course that sells while you sleep.
-              </p>
-            </div>
-          </div>
-
-          {/* ROW 2 — CARD 6: Other Digital Products */}
-          <div className="bg-[#fbf7f4] rounded-2xl p-8 flex flex-col justify-between group font-sans">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#e0e6eb] text-[#1f2a33] flex items-center justify-center border-0 group-hover:bg-[#1f2a33] group-hover:text-[#fbf7f4] transition-colors">
-                  <Package className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-sans font-semibold uppercase tracking-[0.20em] text-[#455a64]">
-                  ASSETS
-                </span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-[#1f2a33] mb-3">
-                Other Digital Products
-              </h3>
-              <p className="font-sans text-sm sm:text-base text-[#455a64] leading-relaxed">
-                Templates, downloads, memberships, and anything else your audience needs.
-              </p>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
