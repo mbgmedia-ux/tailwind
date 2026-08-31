@@ -75,16 +75,16 @@ export default function Process() {
         </p>
       </div>
 
-      {/* ROW 2 — PINNED STICKY SECTION (NO OVERFLOW-HIDDEN ANCESTOR BREAKING POSITION:STICKY) */}
+      {/* ROW 2 — PINNED STICKY SECTION */}
       <div ref={containerRef} className="relative z-10 h-[300vh]">
         <div className="sticky top-20 sm:top-24 flex h-[75vh] min-h-[500px] w-full items-center justify-center overflow-hidden relative">
           
-          {/* STATIC DUAL LAYERED SVG DOODLE LINES AT 2.5X SCALE (PALE SLATE AT 0.50 OPACITY) */}
+          {/* STATIC DUAL LAYERED SVG DOODLE LINES AT ENLARGED 3.5X SCALE */}
           <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden -translate-y-10 sm:-translate-y-16 lg:-translate-y-24">
             <svg
               viewBox="0 0 6000 680"
               preserveAspectRatio="xMidYMid meet"
-              className="w-full h-full min-w-full min-h-full scale-175 sm:scale-[2.1] lg:scale-[2.5] origin-center"
+              className="w-full h-full min-w-full min-h-full scale-[2.4] sm:scale-[2.9] lg:scale-[3.5] origin-center"
             >
               <path
                 d="M 266.813 0 C 69.979 399.076 179.274 526.363 486.263 603.62 C 793.252 680.877 193.717 233.573 155.057 603.62 C 116.397 973.667 836.552 940.009 503.173 983.738 C 169.794 1027.467 588.875 1760.187 111.673 1393.045 C -365.528 1025.903 868.694 1619.076 425.173 1846.885 C -18.348 2074.694 495.457 2268.192 212.173 2328.747 C -71.111 2389.301 806.443 1867.048 470.173 2451 C 133.903 3034.952 112.591 3053.182 288.673 3014.5 C 464.755 2975.818 789.478 3168.482 444.173 3469.102 C 98.868 3769.722 467.924 3891.534 567.173 3825.369 C 666.422 3759.204 258.499 3589.284 168.173 3942.457 C 77.848 4295.629 457.414 3896.327 567.173 4025.519 C 676.933 4154.711 467.466 4413.512 285.673 4327.746 C 103.88 4241.979 546.582 4385.053 339.423 4843.132 C 132.265 5301.212 405.515 5167.326 425.173 5072.805 C 444.831 4978.283 66.831 5142.487 198.173 5338.504 C 329.515 5534.52 864.701 5541.779 486.173 5370 C 107.645 5198.221 -173.336 5577.671 204.673 5715.5 C 582.682 5853.329 339.423 6000 339.423 6000"
@@ -109,8 +109,25 @@ export default function Process() {
           <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               
-              {/* LEFT COLUMN — STEP TITLE & DESCRIPTION */}
+              {/* LEFT COLUMN — STEP TITLE & DESCRIPTION WITH MOBILE-ONLY TOP-RIGHT NUMBER */}
               <div className="md:col-span-6 lg:col-span-5 relative min-h-[280px] flex items-center">
+                
+                {/* MOBILE-ONLY GIANT NUMBER ALIGNED AT TOP RIGHT CORNER (#dfe6ec COLOR) */}
+                <div className="md:hidden absolute -top-16 -right-4 sm:-right-8 pointer-events-none z-0 select-none overflow-visible">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={activeStep}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="font-serif font-light text-[220px] sm:text-[280px] leading-none text-[#dfe6ec] tracking-tighter block"
+                    >
+                      {currentItem.step}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -118,7 +135,7 @@ export default function Process() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -35 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col justify-center w-full"
+                    className="flex flex-col justify-center w-full relative z-10 pr-24 md:pr-0"
                   >
                     <div className="mb-4">
                       <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#455a64]">
@@ -135,8 +152,8 @@ export default function Process() {
                 </AnimatePresence>
               </div>
 
-              {/* RIGHT COLUMN — STATIC '0' + ROLLING DIGIT IN PERFECT LOCKSTEP */}
-              <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end items-center select-none overflow-hidden py-4">
+              {/* RIGHT COLUMN — DESKTOP ONLY: STATIC '0' + ROLLING DIGIT IN PERFECT LOCKSTEP */}
+              <div className="hidden md:flex md:col-span-6 lg:col-span-7 justify-end items-center select-none overflow-hidden py-4">
                 <div className="inline-flex items-center font-serif font-light text-[180px] sm:text-[260px] md:text-[320px] lg:text-[380px] leading-none text-[#1f2a33]/85 tracking-tighter">
                   {/* Static prefix digit '0' */}
                   <span className="py-2 inline-block">0</span>
