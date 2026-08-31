@@ -31,7 +31,7 @@ export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
 
-  // Exact scroll progress tracking matched to sticky top-20 (80px) pinning position
+  // Exact scroll progress tracking matched to sticky top-20 (80px) pinning position (Desktop only)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 80px", "end end"],
@@ -49,7 +49,7 @@ export default function Process() {
     });
   }, [scrollYProgress]);
 
-  // Direct y percentage offsets for the 3 rolling digits
+  // Direct y percentage offsets for the 3 rolling digits on desktop
   const rollOffsets = ["0%", "-33.333%", "-66.666%"];
   const currentItem = steps[activeStep];
 
@@ -75,16 +75,47 @@ export default function Process() {
         </p>
       </div>
 
-      {/* ROW 2 — PINNED STICKY SECTION */}
-      <div ref={containerRef} className="relative z-10 h-[300vh]">
+      {/* MOBILE-ONLY VIEW: NORMAL FLOW STACKED SCROLL THROUGH (NO ANIMATION / PINNING LOCK) */}
+      <div className="sm:hidden relative z-10 px-4 pb-20 pt-6 space-y-16 max-w-md mx-auto">
+        {steps.map((item, idx) => (
+          <div key={idx} className="relative py-8 px-4 flex flex-col items-center text-center">
+            
+            {/* GIANT STEP NUMBER KEPT IN TOP RIGHT CORNER (#dfe6ec COLOR) */}
+            <div className="absolute -top-12 right-0 pointer-events-none z-0 select-none overflow-visible">
+              <span className="font-serif font-light text-[200px] leading-none text-[#dfe6ec] tracking-tighter block">
+                {item.step}
+              </span>
+            </div>
+
+            {/* CENTERED STEP CONTENT ON TOP */}
+            <div className="relative z-10 text-center flex flex-col items-center w-full">
+              <div className="mb-3">
+                <span className="text-sm font-sans font-bold uppercase tracking-[0.25em] text-[#455a64]">
+                  STEP {item.step}
+                </span>
+              </div>
+              <h3 className="font-serif text-3xl font-medium text-[#1f2a33] leading-[1.12] mb-4 text-center">
+                {item.title}
+              </h3>
+              <p className="font-sans text-base text-[#455a64] leading-relaxed text-center max-w-sm mx-auto">
+                {item.description}
+              </p>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      {/* DESKTOP & TABLET VIEW: PINNED STICKY SCROLL SECTION */}
+      <div ref={containerRef} className="hidden sm:block relative z-10 h-[300vh]">
         <div className="sticky top-20 sm:top-24 flex h-[75vh] min-h-[500px] w-full items-center justify-center overflow-hidden relative">
           
-          {/* STATIC DUAL LAYERED SVG DOODLE LINES (HIDDEN ON MOBILE DISPLAYS) */}
-          <div className="hidden sm:flex absolute inset-0 pointer-events-none z-0 items-center justify-center overflow-hidden -translate-y-16 lg:-translate-y-24">
+          {/* STATIC DUAL LAYERED SVG DOODLE LINES */}
+          <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden -translate-y-16 lg:-translate-y-24">
             <svg
               viewBox="0 0 6000 680"
               preserveAspectRatio="xMidYMid meet"
-              className="w-full h-full min-w-full min-h-full scale-[3.0] sm:scale-[2.9] lg:scale-[3.5] origin-center"
+              className="w-full h-full min-w-full min-h-full scale-[2.9] lg:scale-[3.5] origin-center"
             >
               <path
                 d="M 266.813 0 C 69.979 399.076 179.274 526.363 486.263 603.62 C 793.252 680.877 193.717 233.573 155.057 603.62 C 116.397 973.667 836.552 940.009 503.173 983.738 C 169.794 1027.467 588.875 1760.187 111.673 1393.045 C -365.528 1025.903 868.694 1619.076 425.173 1846.885 C -18.348 2074.694 495.457 2268.192 212.173 2328.747 C -71.111 2389.301 806.443 1867.048 470.173 2451 C 133.903 3034.952 112.591 3053.182 288.673 3014.5 C 464.755 2975.818 789.478 3168.482 444.173 3469.102 C 98.868 3769.722 467.924 3891.534 567.173 3825.369 C 666.422 3759.204 258.499 3589.284 168.173 3942.457 C 77.848 4295.629 457.414 3896.327 567.173 4025.519 C 676.933 4154.711 467.466 4413.512 285.673 4327.746 C 103.88 4241.979 546.582 4385.053 339.423 4843.132 C 132.265 5301.212 405.515 5167.326 425.173 5072.805 C 444.831 4978.283 66.831 5142.487 198.173 5338.504 C 329.515 5534.52 864.701 5541.779 486.173 5370 C 107.645 5198.221 -173.336 5577.671 204.673 5715.5 C 582.682 5853.329 339.423 6000 339.423 6000"
@@ -105,29 +136,12 @@ export default function Process() {
             </svg>
           </div>
 
-          {/* STEP CONTENT GRID */}
+          {/* DESKTOP STEP CONTENT GRID */}
           <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               
-              {/* LEFT COLUMN — STEP TITLE & DESCRIPTION WITH MOBILE-ONLY TOP-RIGHT NUMBER */}
+              {/* LEFT COLUMN — STEP TITLE & DESCRIPTION */}
               <div className="md:col-span-6 lg:col-span-5 relative min-h-[280px] flex items-center">
-                
-                {/* MOBILE-ONLY GIANT NUMBER ALIGNED AT TOP RIGHT CORNER (#dfe6ec COLOR) */}
-                <div className="md:hidden absolute -top-16 -right-4 sm:-right-8 pointer-events-none z-0 select-none overflow-visible">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={activeStep}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="font-serif font-light text-[220px] sm:text-[280px] leading-none text-[#dfe6ec] tracking-tighter block"
-                    >
-                      {currentItem.step}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -135,7 +149,7 @@ export default function Process() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -35 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col justify-center w-full relative z-10 pr-24 md:pr-0"
+                    className="flex flex-col justify-center w-full relative z-10"
                   >
                     <div className="mb-4">
                       <span className="text-sm sm:text-base font-sans font-bold uppercase tracking-[0.25em] text-[#455a64]">
