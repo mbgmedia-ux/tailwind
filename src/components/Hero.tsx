@@ -7,7 +7,7 @@ import BlurText from "./BlurText";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center pt-24 sm:pt-16 pb-12 sm:pb-0 overflow-hidden bg-[#f9f3eb]">
+    <section className="relative min-h-screen w-full flex items-center pt-36 sm:pt-28 md:pt-36 pb-16 sm:pb-0 overflow-hidden bg-[#f9f3eb]">
       {/* DESKTOP BACKGROUND IMAGE (SCALES UP 1ST FROM 0.15 TO 1.0, HIDDEN ON MOBILE) */}
       <motion.div
         initial={{ scale: 0.15, opacity: 0 }}
@@ -23,7 +23,7 @@ export default function Hero() {
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-4 my-auto relative z-10">
         <div className="flex flex-col sm:block items-center justify-between">
           
-          {/* TOP SECTION (CONTENT BLOCK WITH ALL ANIMATION EFFECTS) */}
+          {/* TOP SECTION (CONTENT BLOCK WITH ALL ANIMATION EFFECTS & INCREASED HEADER PADDING) */}
           <div className="max-w-3xl text-center sm:text-left mx-auto sm:mx-0 sm:-ml-8 lg:-ml-14 w-full">
             
             {/* 1. MASK IN FROM THE TOP FOR "GROWTH MARKETING FOR CREATORS" */}
@@ -85,22 +85,20 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* MOBILE ONLY BOTTOM SECTION (50/50 VIEW) — CARD CONTAINING tailwind-hero copy-MOBILE.webp IMAGE */}
+          {/* MOBILE ONLY BOTTOM SECTION — STANDALONE IMAGE WITH ROUNDED CORNERS (NO CARD WRAPPER) */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: 30 }}
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
             animate={{ scale: 1.0, opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.8 }}
-            className="sm:hidden mt-10 w-full max-w-sm mx-auto rounded-2xl overflow-hidden bg-[#fbf7f4] border border-[#b7c6d1]/40 p-3 shadow-md"
+            className="sm:hidden mt-12 w-full max-w-md mx-auto relative h-[320px] sm:h-[380px] rounded-3xl overflow-hidden shadow-sm"
           >
-            <div className="relative w-full h-[280px] sm:h-[320px] rounded-xl overflow-hidden">
-              <Image
-                src="/images/tailwind-hero copy-MOBILE.webp"
-                alt="Tailwind Digital Creator Mobile"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
+            <Image
+              src="/images/tailwind-hero copy-MOBILE.webp"
+              alt="Tailwind Digital Creator Mobile"
+              fill
+              className="object-cover object-top"
+              priority
+            />
           </motion.div>
 
         </div>
