@@ -77,7 +77,7 @@ export default function Contact() {
           {/* COLUMN 1 (SMALLER WIDTH ~40%): PORTRAIT IMAGE */}
           <div className="md:col-span-5 relative w-full min-h-[380px] rounded-2xl overflow-hidden">
             <Image
-              src="/images/awOeL0yKNFgvqogsdV27KvNegc.webp"
+              src="/images/tailwind-contact.png"
               alt="Tailwind Digital Partnership"
               fill
               className="object-cover object-center"
