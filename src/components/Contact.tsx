@@ -71,109 +71,111 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* ASYMMETRIC GRID: SMALLER IMAGE (COL-SPAN-5), WIDER FORM (COL-SPAN-7), SAME STRETCHED HEIGHT */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-5xl mx-auto">
-          
-          {/* COLUMN 1 (SMALLER WIDTH ~40%): TAILWIND LOADER LOGO */}
-          <div className="md:col-span-5 flex flex-col items-center justify-center text-center p-4 sm:p-6">
-            <img
-              src="/tailwind-loader-logo.svg"
-              alt="Tailwind Digital Logo"
-              className="w-52 sm:w-64 h-auto object-contain"
-            />
-          </div>
+        {/* UNIFIED CARD CONTAINING LOGO & FORM TOGETHER (BORDERLESS & SHADOWLESS) */}
+        <div className="bg-[#fbf7f4] p-8 sm:p-12 lg:p-14 rounded-3xl max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* COLUMN 1 (SMALLER WIDTH ~40%): TAILWIND LOADER LOGO */}
+            <div className="md:col-span-5 flex flex-col items-center justify-center text-center p-2 sm:p-4">
+              <img
+                src="/tailwind-loader-logo.svg"
+                alt="Tailwind Digital Logo"
+                className="w-48 sm:w-60 h-auto object-contain"
+              />
+            </div>
 
-          {/* COLUMN 2 (WIDER WIDTH ~60%): CONTACT FORM */}
-          <div className="md:col-span-7 font-sans w-full flex flex-col justify-center p-2 sm:p-4">
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-300">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="font-serif text-2xl font-semibold text-[#1f2a33] mb-2">
-                  Message Received!
-                </h3>
-                <p className="text-base text-[#455a64]">
-                  Thank you for reaching out. I'll get back to you within 48 hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {errorMsg && (
-                  <div className="p-4 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-center gap-3">
-                    <AlertCircle className="w-5 h-5 shrink-0" />
-                    <span>{errorMsg}</span>
+            {/* COLUMN 2 (WIDER WIDTH ~60%): CONTACT FORM */}
+            <div className="md:col-span-7 font-sans w-full flex flex-col justify-center">
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-300">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                )}
-
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-[#1f2a33] mb-2"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your name"
-                    className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
-                  />
+                  <h3 className="font-serif text-2xl font-semibold text-[#1f2a33] mb-2">
+                    Message Received!
+                  </h3>
+                  <p className="text-base text-[#455a64]">
+                    Thank you for reaching out. I'll get back to you within 48 hours.
+                  </p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {errorMsg && (
+                    <div className="p-4 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-center gap-3">
+                      <AlertCircle className="w-5 h-5 shrink-0" />
+                      <span>{errorMsg}</span>
+                    </div>
+                  )}
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-[#1f2a33] mb-2"
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-[#1f2a33] mb-2"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="Your name"
+                      className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-[#1f2a33] mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="you@example.com"
+                      className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="instagram"
+                      className="block text-sm font-medium text-[#1f2a33] mb-2"
+                    >
+                      Instagram handle
+                    </label>
+                    <input
+                      type="text"
+                      id="instagram"
+                      name="instagram"
+                      value={formData.instagram}
+                      onChange={handleChange}
+                      required
+                      placeholder="@yourhandle"
+                      className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="btn-primary-dark w-full inline-flex items-center justify-center px-6 py-4 text-base font-medium font-sans disabled:opacity-50 mt-2"
                   >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="you@example.com"
-                    className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
-                  />
-                </div>
+                    {loading ? "Sending..." : "Let's Talk"}
+                  </button>
+                </form>
+              )}
+            </div>
 
-                <div>
-                  <label
-                    htmlFor="instagram"
-                    className="block text-sm font-medium text-[#1f2a33] mb-2"
-                  >
-                    Instagram handle
-                  </label>
-                  <input
-                    type="text"
-                    id="instagram"
-                    name="instagram"
-                    value={formData.instagram}
-                    onChange={handleChange}
-                    required
-                    placeholder="@yourhandle"
-                    className="w-full bg-[#fbf7f4] text-[#1f2a33] border border-[#b7c6d1] px-4 py-3 rounded-lg text-sm sm:text-base outline-none focus:ring-2 focus:ring-[#455a64]/50 focus:border-[#455a64] placeholder-[#a89c93] transition-all"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="btn-primary-dark w-full inline-flex items-center justify-center px-6 py-4 text-base font-medium font-sans disabled:opacity-50 mt-2"
-                >
-                  {loading ? "Sending..." : "Let's Talk"}
-                </button>
-              </form>
-            )}
           </div>
-
         </div>
       </div>
     </section>
