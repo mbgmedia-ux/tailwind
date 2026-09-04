@@ -74,15 +74,12 @@ export default function Contact() {
         {/* ASYMMETRIC GRID: SMALLER IMAGE (COL-SPAN-5), WIDER FORM (COL-SPAN-7), SAME STRETCHED HEIGHT */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-5xl mx-auto">
           
-          {/* COLUMN 1 (SMALLER WIDTH ~40%): PORTRAIT IMAGE */}
-          <div className="md:col-span-5 relative w-full min-h-[380px] rounded-2xl overflow-hidden">
-            <Image
-              src="/images/tailwind-contact.png"
-              alt="Tailwind Digital Partnership"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 40vw"
-              priority
+          {/* COLUMN 1 (SMALLER WIDTH ~40%): TAILWIND LOADER LOGO CARD */}
+          <div className="md:col-span-5 bg-[#fbf7f4] p-8 sm:p-10 rounded-2xl flex flex-col items-center justify-center text-center shadow-xs">
+            <img
+              src="/tailwind-loader-logo.svg"
+              alt="Tailwind Digital Logo"
+              className="w-48 sm:w-56 h-auto object-contain"
             />
           </div>
 
