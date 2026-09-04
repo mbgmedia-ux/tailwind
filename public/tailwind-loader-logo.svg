@@ -5,14 +5,15 @@
       .cls-1 {
         fill: #c89e65;
         fill-rule: evenodd;
-      }
-
-      .cls-1, .cls-2 {
         stroke-width: 0px;
       }
 
       .cls-2 {
         fill: #1f2a33;
+        stroke: #1f2a33;
+        stroke-width: 0.75px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
       }
     </style>
   </defs>

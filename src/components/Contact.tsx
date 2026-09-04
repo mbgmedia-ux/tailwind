@@ -74,17 +74,17 @@ export default function Contact() {
         {/* ASYMMETRIC GRID: SMALLER IMAGE (COL-SPAN-5), WIDER FORM (COL-SPAN-7), SAME STRETCHED HEIGHT */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-5xl mx-auto">
           
-          {/* COLUMN 1 (SMALLER WIDTH ~40%): TAILWIND LOADER LOGO CARD */}
-          <div className="md:col-span-5 bg-[#fbf7f4] p-8 sm:p-10 rounded-2xl flex flex-col items-center justify-center text-center shadow-xs">
+          {/* COLUMN 1 (SMALLER WIDTH ~40%): TAILWIND LOADER LOGO */}
+          <div className="md:col-span-5 flex flex-col items-center justify-center text-center p-4 sm:p-6">
             <img
               src="/tailwind-loader-logo.svg"
               alt="Tailwind Digital Logo"
-              className="w-48 sm:w-56 h-auto object-contain"
+              className="w-52 sm:w-64 h-auto object-contain"
             />
           </div>
 
-          {/* COLUMN 2 (WIDER WIDTH ~60%): CONTACT FORM CARD */}
-          <div className="md:col-span-7 bg-[#fbf7f4] p-8 sm:p-10 rounded-2xl font-sans w-full flex flex-col justify-center">
+          {/* COLUMN 2 (WIDER WIDTH ~60%): CONTACT FORM */}
+          <div className="md:col-span-7 font-sans w-full flex flex-col justify-center p-2 sm:p-4">
             {submitted ? (
               <div className="text-center py-8">
                 <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-300">
